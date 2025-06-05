@@ -66,3 +66,28 @@ def winner(board):
         print(board[0][0])
 
 winner(board)
+
+def actions(board):
+    """
+    Returns set of all possible actions (i, j) available on the board.
+    """
+
+    possible_actions = set()
+
+    for rowIdx in range(0, len(board)):
+        for colIdx in range(0, len(board)):
+            if board[rowIdx][colIdx] == None:
+                possible_actions.add((rowIdx,colIdx))
+
+    return possible_actions
+
+
+def terminal(board):
+
+    if winner(board) != None or (action for action in actions(board) if action == ()) == ():
+        return True
+    else:
+        return False
+
+print(actions(board))
+print(terminal(board))
