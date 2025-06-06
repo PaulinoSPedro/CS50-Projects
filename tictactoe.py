@@ -99,7 +99,12 @@ def terminal(board):
     """
     Returns True if game is over, False otherwise.
     """
-    if winner(board) != None or (action for action in actions(board) if action == ()) == ():
+    possible_actions = actions(board)
+    empty_set = set()
+
+    if winner(board) != None:
+        return True
+    elif winner(board) == None and (possible_actions == empty_set):
         return True
     else:
         return False
@@ -109,8 +114,13 @@ def utility(board):
     """
     Returns 1 if X has won the game, -1 if O has won, 0 otherwise.
     """
-    #raise NotImplementedError
-
+    if terminal(board):
+        if winner(board) == X:
+            return 1
+        elif winner(board) == O:
+            return -1
+        else:
+            return 0
 
 def minimax(board):
     """
